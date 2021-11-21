@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { Button } from '@material-ui/core';
-import Stack from '@mui/material/Stack';
-import './App.css';
+import Login from './components/Login'
 
 function App() {
   return (
-    <Stack direction='row'>
-      <Button variant="contained">Contained</Button>
-    </Stack>
+    <Login/>
   );
 }
-
 export default App;
