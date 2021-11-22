@@ -1,5 +1,20 @@
 // paper & background
-$paper: #212946;
+$paper: #212946;//OK
+
+$backgroundDefault: #111936; //OK
+$background: #1a223f; //OK
+
+// text
+$darkTextPrimary: #bdc8f0; //OK
+$darkTextSecondary: #8492c4; //OK
+$textDark: #fff; //OK
+
+// menu
+$menuSelected: #7267ef; //OK
+$menuSelectedBack: #191f46; //OK
+
+// divider
+$divider: #bdc8f033;
 
 // primary
 $primaryLight: #2e3754;
@@ -7,13 +22,11 @@ $primaryMain: #7267ef;
 $primaryDark: #1e88e5;
 $primary200: #111936;
 $primary800: #1565c0;
-
 // secondary
 $secondaryLight: #29314f;
 $secondaryMain: #7267ef;
 $secondaryDark: #5e35b1;
 $secondary200: #b39ddb;
-$secondary700: #1a223f;
 $secondary800: #4527a0;
 
 // success Colors
@@ -45,11 +58,25 @@ $grey300: #e0e0e0;
 $grey500: #9e9e9e;
 $grey600: #757575;
 $grey700: #616161;
-$grey900: #212121;
+$grey900: #d7dcec;//OK
 
 :export {
     // paper & background
     paper: $paper;
+    backgroundDefault: $backgroundDefault;
+    background: $background;
+
+    // text
+    darkTextPrimary: $darkTextPrimary;
+    darkTextSecondary: $darkTextSecondary;
+    textDark: $textDark;
+
+    // menu
+    menuSelected: $menuSelected;
+    menuSelectedBack: $menuSelectedBack;
+
+    // divider
+    divider: $divider;
 
     // primary
     primaryLight: $primaryLight;
