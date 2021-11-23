@@ -1,26 +1,26 @@
 import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Button, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/system';
 
 // project imports
-import AuthWrapper1 from '../AuthWrapper1';
-import AuthCardWrapper from '../AuthCardWrapper';
-import Logo from 'ui-component/Logo';
-import AuthRegister from '../auth-forms/AuthRegister';
+import AuthWrapper from './components/AuthWrapper';
+import AuthCardWrapper from './components/AuthCardWrapper';
+
 import AuthFooter from 'ui-component/cards/AuthFooter';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import Logo from 'ui-component/Logo';
 
-// assets
+import Google from 'assets/images/icons/social-google.svg';
 
-// ===============================|| AUTH3 - REGISTER ||=============================== //
-
-const Register = () => {
+const Login = () => {
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
-        <AuthWrapper1>
+        <AuthWrapper>
             <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
                 <Grid item xs={12}>
                     <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
@@ -46,7 +46,7 @@ const Register = () => {
                                                         gutterBottom
                                                         variant={matchDownSM ? 'h3' : 'h2'}
                                                     >
-                                                        Sign up
+                                                        Hi, Welcome Back
                                                     </Typography>
                                                     <Typography
                                                         variant="caption"
@@ -60,21 +60,33 @@ const Register = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <AuthRegister />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Divider />
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Grid item container direction="column" alignItems="center" xs={12}>
-                                            <Typography
-                                                component={Link}
-                                                to="/pages/login/login3"
-                                                variant="subtitle1"
-                                                sx={{ textDecoration: 'none' }}
-                                            >
-                                                Already have an account?
-                                            </Typography>
+                                        <Grid container direction="column" justifyContent="center" spacing={2}>
+                                            <Grid item xs={12}>
+                                                <AnimateButton>
+                                                    <Button
+                                                        disableElevation
+                                                        fullWidth
+                                                        size="large"
+                                                        variant="outlined"
+                                                        sx={{
+                                                            color: 'grey.700',
+                                                            backgroundColor: theme.palette.primary,
+                                                            borderColor: theme.palette.grey[100]
+                                                        }}
+                                                    >
+                                                        <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
+                                                            <img
+                                                                src={Google}
+                                                                alt="google"
+                                                                width={16}
+                                                                height={16}
+                                                                style={{ marginRight: matchDownSM ? 8 : 16 }}
+                                                            />
+                                                        </Box>
+                                                        SIGN IN WITH GOOGLE
+                                                    </Button>
+                                                </AnimateButton>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -86,8 +98,8 @@ const Register = () => {
                     <AuthFooter />
                 </Grid>
             </Grid>
-        </AuthWrapper1>
+        </AuthWrapper>
     );
 };
 
-export default Register;
+export default Login;
