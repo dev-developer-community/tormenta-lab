@@ -4,8 +4,12 @@ import api from '../services/api';
 
 function Login() {
 
-    const onSuccess = (response) => {
-        api.post('pessoa/verification', response.tokenId)
+    const onSuccess = async (response) => {
+        const token = {
+            tokenId: response.getAuthResponse().id_token
+        }
+        await api.post('user/verification', token)
+            .then(({data}) => { console.log(data) })
     }
 
     const onFailure = (response) => {
@@ -17,7 +21,7 @@ function Login() {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             onSuccess={onSuccess}
             onFailure={onFailure}
-            buttonText = "Sign in with Google"
+            buttonText="Sign in with Google"
             isSignedIn='true' //to keep the user authenticated
             accessType='offline'
         />
