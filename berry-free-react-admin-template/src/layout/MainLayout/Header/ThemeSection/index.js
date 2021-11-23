@@ -1,31 +1,37 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Avatar, Box, ButtonBase } from '@mui/material';
 
-import LogoSection from '../LogoSection';
-import ThemeSection from './ThemeSection';
+import { IconSun, IconMoon } from '@tabler/icons';
+import { SET_DARK_THEME } from 'store/actions';
 
-import { IconMenu2 } from '@tabler/icons';
-
-const Header = ({ handleLeftDrawerToggle }) => {
+const ThemeSection = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const customization = useSelector((state) => state.customization);
+
+    const [darkTheme, setDarkTheme] = useState(customization.darkTheme);
+    const handleToggle = () => {
+        setDarkTheme(!darkTheme);
+    };
+    useEffect(() => {
+        dispatch({ type: SET_DARK_THEME, darkTheme });
+    }, [dispatch, darkTheme]);
 
     return (
         <>
             <Box
                 sx={{
-                    width: 228,
-                    display: 'flex',
+                    ml: 2,
+                    mr: 3,
                     [theme.breakpoints.down('md')]: {
-                        width: 'auto'
+                        mr: 2
                     }
                 }}
             >
-                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
-                    <LogoSection />
-                </Box>
-                <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+                <ButtonBase sx={{ borderRadius: '12px' }}>
                     <Avatar
                         variant="rounded"
                         sx={{
@@ -39,25 +45,17 @@ const Header = ({ handleLeftDrawerToggle }) => {
                                 color: theme.palette.secondary.light
                             }
                         }}
-                        onClick={handleLeftDrawerToggle}
+                        aria-controls={darkTheme ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={handleToggle}
                         color="inherit"
                     >
-                        <IconMenu2 stroke={1.5} size="1.3rem" />
+                        {darkTheme ? <IconSun stroke={1.5} size="1.3rem" /> : <IconMoon stroke={1.5} size="1.3rem" />}
                     </Avatar>
                 </ButtonBase>
             </Box>
-
-            {/* header search */}
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ flexGrow: 1 }} />
-
-            <ThemeSection />
         </>
     );
 };
 
-Header.propTypes = {
-    handleLeftDrawerToggle: PropTypes.func
-};
-
-export default Header;
+export default ThemeSection;
