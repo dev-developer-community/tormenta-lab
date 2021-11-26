@@ -82,7 +82,6 @@ const MainLayout = () => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            {/* header */}
             <AppBar
                 enableColorOnDark
                 position="fixed"
@@ -98,12 +97,9 @@ const MainLayout = () => {
                 </Toolbar>
             </AppBar>
 
-            {/* drawer */}
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
-            {/* main content */}
             <Main theme={theme} open={leftDrawerOpened}>
-                {/* breadcrumb */}
                 <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
                 <Outlet />
             </Main>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import { useTheme } from '@mui/material/styles';
 
 // material-ui
@@ -14,10 +15,25 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import Logo from 'ui-component/Logo';
 
 import Google from 'assets/images/icons/social-google.svg';
+import { useAuth } from 'contexts';
 
 const Login = () => {
     const theme = useTheme();
+    const auth = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        const from = location.state?.from?.pathname || '/';
+
+        auth.signin('Clediano', () => {
+            navigate(from, { replace: true });
+        });
+    }
 
     return (
         <AuthWrapper>
@@ -73,6 +89,7 @@ const Login = () => {
                                                             backgroundColor: theme.palette.primary,
                                                             borderColor: theme.palette.grey[100]
                                                         }}
+                                                        onClick={(event) => handleSubmit(event)}
                                                     >
                                                         <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
                                                             <img

@@ -8,6 +8,7 @@ import Routes from 'routes';
 import themes from 'themes';
 
 import NavigationScroll from 'layout/NavigationScroll';
+import { AuthProvider } from 'contexts';
 
 const App = () => {
     const customization = useSelector((state) => state.customization);
@@ -16,7 +17,9 @@ const App = () => {
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
                 <NavigationScroll>
-                    <Routes />
+                    <AuthProvider>
+                        <Routes />
+                    </AuthProvider>
                 </NavigationScroll>
             </ThemeProvider>
         </StyledEngineProvider>

@@ -9,7 +9,7 @@ const AuthLogin = Loadable(lazy(() => import('views/pages/authentication/Login')
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
-const AuthenticationRoutes = {
+const PublicRoutes = {
     path: '/',
     element: <MinimalLayout />,
     children: [
@@ -20,4 +20,4 @@ const AuthenticationRoutes = {
     ]
 };
 
-export default AuthenticationRoutes;
+export default PublicRoutes;
