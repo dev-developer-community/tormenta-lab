@@ -2,10 +2,12 @@ import ReactDOM from 'react-dom';
 
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
-import * as serviceWorker from 'serviceWorker';
-import App from 'App';
 import { store } from 'store';
+import * as serviceWorker from 'serviceWorker';
+
+import App from 'App';
+
+import './i18n';
 
 import 'assets/scss/style.scss';
 

@@ -10,9 +10,9 @@ import { Box } from '@mui/system';
 import AuthWrapper from './components/AuthWrapper';
 import AuthCardWrapper from './components/AuthCardWrapper';
 
-import AuthFooter from 'ui-component/cards/AuthFooter';
-import AnimateButton from 'ui-component/extended/AnimateButton';
-import Logo from 'ui-component/Logo';
+import AuthFooter from 'components/cards/AuthFooter';
+import AnimateButton from 'components/extended/AnimateButton';
+import Logo from 'components/Logo';
 
 import Google from 'assets/images/icons/social-google.svg';
 import { useAuth } from 'contexts';

@@ -5,6 +5,10 @@ import { useLocation, Navigate } from 'react-router-dom';
 
 const AuthContext = React.createContext(null);
 
+function useAuth() {
+    return React.useContext(AuthContext);
+}
+
 function AuthProvider({ children }) {
     const [user, setUser] = React.useState(null);
     function signin(newUser, callback) {
@@ -13,7 +17,7 @@ function AuthProvider({ children }) {
             resolve();
         }).then(() => {
             setUser(newUser);
-            return callback();
+            callback();
         });
     }
     function signout(callback) {
@@ -22,17 +26,13 @@ function AuthProvider({ children }) {
             resolve();
         }).then(() => {
             setUser(null);
-            return callback();
+            callback();
         });
     }
 
     const value = { user, signin, signout };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
-
-function useAuth() {
-    return React.useContext(AuthContext);
 }
 
 function RequireAuth({ children }) {
