@@ -62,7 +62,7 @@ const ThemeSection = () => {
                     aria-haspopup="true"
                     onClick={handleChangeLanguage}
                     color="inherit"
-                    src={selectedLanguage === 'en-US' ? BrazilFlag : UnitedStatesFlag}
+                    src={selectedLanguage === 'en-US' ? UnitedStatesFlag : BrazilFlag}
                     alt="Language Flag"
                 />
             </ButtonBase>
