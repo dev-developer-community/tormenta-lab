@@ -12,22 +12,12 @@ function useAuth() {
 function AuthProvider({ children }) {
     const [user, setUser] = React.useState(null);
     function signin(newUser, callback) {
-        /* eslint-disable-next-line */
-        return new Promise((resolve, reject) => {
-            resolve();
-        }).then(() => {
-            setUser(newUser);
-            callback();
-        });
+        setUser(newUser);
+        if (callback) callback();
     }
     function signout(callback) {
-        /* eslint-disable-next-line */
-        return new Promise((resolve, reject) => {
-            resolve();
-        }).then(() => {
-            setUser(null);
-            callback();
-        });
+        setUser(null);
+        if (callback) callback();
     }
 
     const value = { user, signin, signout };

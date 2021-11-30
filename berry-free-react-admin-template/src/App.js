@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import Slide from '@mui/material/Slide';
 
 import Routes from 'routes';
 
@@ -18,7 +20,17 @@ const App = () => {
                 <CssBaseline />
                 <NavigationScroll>
                     <AuthProvider>
-                        <Routes />
+                        <SnackbarProvider
+                            maxSnack={3}
+                            autoHideDuration={4000}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right'
+                            }}
+                            TransitionComponent={Slide}
+                        >
+                            <Routes />
+                        </SnackbarProvider>
                     </AuthProvider>
                 </NavigationScroll>
             </ThemeProvider>
