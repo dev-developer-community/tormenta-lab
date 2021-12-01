@@ -1,10 +1,9 @@
-import dashboard from './dashboard';
-import utilities from './utilities';
-
 // ==============================|| MENU ITEMS ||============================== //
 
+import dashboard from './dashboard';
+
 const menuItems = {
-    items: [dashboard, utilities]
+    items: [dashboard]
 };
 
 export default menuItems;

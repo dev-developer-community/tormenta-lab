@@ -2,32 +2,22 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, List, Typography } from '@mui/material';
+import { List, Stack, Typography } from '@mui/material';
 
 // project imports
 import NavItem from '../NavItem';
-import NavCollapse from '../NavCollapse';
+import { useAuth } from 'contexts';
+import { Box } from '@mui/system';
+import Avatar from '@mui/material/Avatar';
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 
 const NavGroup = ({ item }) => {
     const theme = useTheme();
+    const auth = useAuth();
 
-    // menu list collapse & items
-    const items = item.children?.map((menu) => {
-        switch (menu.type) {
-            case 'collapse':
-                return <NavCollapse key={menu.id} menu={menu} level={1} />;
-            case 'item':
-                return <NavItem key={menu.id} item={menu} level={1} />;
-            default:
-                return (
-                    <Typography key={menu.id} variant="h6" color="error" align="center">
-                        Menu Items Error
-                    </Typography>
-                );
-        }
-    });
+    // menu list items
+    const items = item.children?.map((menu) => <NavItem key={menu.id} item={menu} level={1} />);
 
     return (
         <>
@@ -35,7 +25,10 @@ const NavGroup = ({ item }) => {
                 subheader={
                     item.title && (
                         <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
-                            {item.title}
+                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                                <Avatar alt="Profile Image" src={auth.user.imageUrl} />
+                                {auth.user.name}
+                            </Box>
                             {item.caption && (
                                 <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
                                     {item.caption}
@@ -45,11 +38,8 @@ const NavGroup = ({ item }) => {
                     )
                 }
             >
-                {items}
+                <Stack spacing={1}>{items}</Stack>
             </List>
-
-            {/* group divider */}
-            <Divider sx={{ mt: 0.25, mb: 1.25 }} />
         </>
     );
 };

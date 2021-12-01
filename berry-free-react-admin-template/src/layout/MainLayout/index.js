@@ -7,15 +7,10 @@ import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 
 // project imports
-import Breadcrumbs from 'components/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import navigation from 'menu-items';
 import { drawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
-
-// assets
-import { IconChevronRight } from '@tabler/icons';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -100,7 +95,6 @@ const MainLayout = () => {
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
             <Main theme={theme} open={leftDrawerOpened}>
-                <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
                 <Outlet />
             </Main>
         </Box>

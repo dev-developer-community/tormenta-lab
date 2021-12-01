@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { useTheme } from '@mui/material/styles';
+import { useAuth } from 'contexts';
 import { Avatar, Box, ButtonBase } from '@mui/material';
 
 import LogoSection from '../LogoSection';
@@ -10,7 +11,8 @@ import { IconMenu2 } from '@tabler/icons';
 
 const Header = ({ handleLeftDrawerToggle }) => {
     const theme = useTheme();
-
+    const auth = useAuth();
+    console.log(auth);
     return (
         <>
             <Box

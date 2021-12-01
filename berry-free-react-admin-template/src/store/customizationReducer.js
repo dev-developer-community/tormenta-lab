@@ -3,11 +3,12 @@ import config from 'config';
 import * as actionTypes from './actions';
 
 export const initialState = {
-    isOpen: [], // for active default menu
+    isOpen: [],
     fontFamily: config.fontFamily,
     borderRadius: config.borderRadius,
     darkTheme: config.darkTheme,
-    opened: true
+    opened: true,
+    character: {}
 };
 
 // ==============================|| CUSTOMIZATION REDUCER ||============================== //
@@ -40,6 +41,11 @@ const customizationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 darkTheme: action.darkTheme
+            };
+        case actionTypes.CHARACTER_SELECTED:
+            return {
+                ...state,
+                character: action.character
             };
         default:
             return state;

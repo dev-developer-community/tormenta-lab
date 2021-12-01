@@ -35,8 +35,8 @@ const Login = () => {
         const idToken = response.getAuthResponse().id_token;
         const from = location.state?.from?.pathname || '/';
 
-        await authenticate(idToken).then(({ data }) => {
-            auth.signin(data, () => navigate(from, { replace: true }));
+        await authenticate(idToken).then(() => {
+            auth.signin(response.profileObj, () => navigate(from, { replace: true }));
         });
     }
 
