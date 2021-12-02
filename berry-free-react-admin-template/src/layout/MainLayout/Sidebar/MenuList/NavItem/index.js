@@ -49,16 +49,11 @@ const NavItem = ({ item, level }) => {
     const customization = useSelector((state) => state.customization);
     const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
-    let itemTarget = '_self';
-    if (item.target) {
-        itemTarget = '_blank';
-    }
-
     let listItemProps = {
-        component: forwardRef((props, ref) => <Link ref={ref} {...props} to={`${config.basename}${item.url}`} target={itemTarget} />)
+        component: forwardRef((props, ref) => <Link ref={ref} {...props} to={`${config.basename}/character/${item.id}`} target="_self" />)
     };
     if (item?.external) {
-        listItemProps = { component: 'a', href: item.url, target: itemTarget };
+        listItemProps = { component: 'a', href: `/character/${item.id}`, target: '_self' };
     }
 
     const itemHandler = (item) => {
@@ -81,7 +76,11 @@ const NavItem = ({ item, level }) => {
     }, []);
 
     return (
-        <Badge color="secondary" badgeContent={item.level} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Badge
+            color="secondary"
+            badgeContent={item.level || <Translator path="sidebar.badgeNoLevel" />}
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
             <ListItemButton
                 {...listItemProps}
                 disabled={item.disabled}
@@ -97,7 +96,7 @@ const NavItem = ({ item, level }) => {
                     <StyledBadge
                         overlap="circular"
                         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                        variant={item.id === customization.character.id ? 'dot' : 'standard'}
+                        variant={item.id === customization.character?.id ? 'dot' : 'standard'}
                     >
                         <Avatar alt="Image characterer" src={item.image} />
                     </StyledBadge>
@@ -111,7 +110,7 @@ const NavItem = ({ item, level }) => {
                     secondary={
                         item.breed && (
                             <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                                {item.breed.join(' | ') || <Translator path="sidebar.noBreed" />}
+                                {item.breed?.join(' | ') || <Translator path="sidebar.noBreed" />}
                             </Typography>
                         )
                     }

@@ -1,11 +1,3 @@
-// assets
-import { IconDashboard } from '@tabler/icons';
-
-// constant
-const icons = { IconDashboard };
-
-// ==============================|| DASHBOARD MENU ITEMS ||============================== //
-
 const dashboard = {
     id: '5cc7307d-32d6-46d7-af04-949e7e7039f5',
     type: 'group',
@@ -16,17 +8,15 @@ const dashboard = {
             breed: ['Caçador', 'Meio Elfo'],
             level: 10,
             type: 'item',
-            image: '',
-            url: '/'
+            image: ''
         },
         {
             id: '626bb39c-52ce-4c71-b891-f5f16285b134',
             name: '',
             breed: [],
-            level: 2,
+            level: 0,
             type: 'item',
-            image: '',
-            url: '/'
+            image: ''
         }
     ]
 };

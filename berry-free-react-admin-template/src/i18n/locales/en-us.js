@@ -5,7 +5,9 @@ export default {
         },
         sidebar: {
             noBreed: 'No breed selected',
-            noName: 'Name not defined'
+            noName: 'Name not defined',
+            addNewCharacter: 'New characterer',
+            badgeNoLevel: 'New'
         }
     }
 };
